@@ -1,4 +1,4 @@
-package com.example.iocanddi;
+package com.example.iocanddi.comman;
 
 import org.springframework.stereotype.Component;
 
@@ -8,6 +8,6 @@ public class CricketCouch implements Coach{
 
     @Override
     public String getDailyWorkout() {
-        return "Practice fast blowing for 15 minutes!!";
+        return "Practice fast blowing for 15 minutes !!!";
     }
 }
