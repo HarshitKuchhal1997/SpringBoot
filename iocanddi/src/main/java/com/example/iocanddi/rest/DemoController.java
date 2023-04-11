@@ -11,11 +11,21 @@ public class DemoController {
     // define a private field for the dependency
     private Coach mychoch;
 
+/*
+
     // define a constructor for dependency injection
     @Autowired
     public DemoController(Coach theCoach){
         mychoch=theCoach;
     }
+*/
+
+    // define a setter for dependency injection
+    @Autowired
+    public void setCoach(Coach theCoach){
+        mychoch=theCoach;
+    }
+
 
     @GetMapping("/dailyworkout")
     public String getDailyWorkout(){
