@@ -1,4 +1,4 @@
-package com.example.iocanddi.comman;
+package com.example.iocanddi.common;
 
 import org.springframework.stereotype.Component;
 

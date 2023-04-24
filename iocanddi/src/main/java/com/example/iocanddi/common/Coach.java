@@ -1,4 +1,4 @@
-package com.example.iocanddi.comman;
+package com.example.iocanddi.common;
 
 public interface Coach {
     String getDailyWorkout();
