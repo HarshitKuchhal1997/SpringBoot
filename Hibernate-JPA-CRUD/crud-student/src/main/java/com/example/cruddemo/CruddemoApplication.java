@@ -26,12 +26,31 @@ public class CruddemoApplication {
 
 			//readStudent(studentDAO);
 
-			queryforStudent(studentDAO);
+			//queryForStudent(studentDAO);
+
+			queryForStudentByLastName(studentDAO);
 		};
 	}
 
+	// ------------------ Read multiple/all Students from the Database based on last name filter ----------------------
+
+	private void queryForStudentByLastName(StudentDAO studentDAO) {
+
+
+		// get a list of students
+		List<Student> theStudent=studentDAO.findByLastName("Pandey");
+
+		// display list of student
+		for (Student tempStudent:theStudent){
+			System.out.println(tempStudent);
+		}
+	}
+
 	// ------------------ Read multiple/all Students from the Database ----------------------
-	private void queryforStudent(StudentDAO studentDAO) {
+
+/*
+
+	private void queryForStudent(StudentDAO studentDAO) {
 
 		// get the List of Students stored in the database
 		List<Student> theStudent=studentDAO.findAll();
@@ -42,6 +61,11 @@ public class CruddemoApplication {
 		}
 
 	}
+
+*/
+
+
+
 
 	// ------------------ Read single Student from the Database ----------------------
 
