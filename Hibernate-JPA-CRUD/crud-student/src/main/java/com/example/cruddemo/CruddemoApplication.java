@@ -28,12 +28,70 @@ public class CruddemoApplication {
 
 			//queryForStudent(studentDAO);
 
-			queryForStudentByLastName(studentDAO);
+			//queryForStudentByLastName(studentDAO);
+
+			//updateStudent(studentDAO);
+
+			//deleteStudent(studentDAO);
+
+			deleteAllStudents(studentDAO);
+
 		};
 	}
 
+	// ---------------------- DELETING MULTIPLE STUDENTS FROM THE DATABASE ----------------------------
+
+	private void deleteAllStudents(StudentDAO studentDAO) {
+
+		System.out.println("Deleting all Students...");
+		int numRowsDeleted=studentDAO.deleteAll();
+		System.out.println("Deleted Rows Count: "+numRowsDeleted);
+
+	}
+
+	// ---------------------- DELETING A SINGLE STUDENT FROM THE DATABASE BASED ON ID ----------------------------
+
+/*
+	private void deleteStudent(StudentDAO studentDAO) {
+
+		int studentId=3;
+		System.out.println("Deleting Student id: "+studentId);
+		studentDAO.delete(3);
+
+	}
+
+ */
+
+
+	// ----------------------- Update Single Student Records --------------------------
+
+/*
+	private void updateStudent(StudentDAO studentDAO) {
+
+		// Retrieve student based on ID( Which is primary key in our case)
+		int studentId=1;
+		System.out.println("Getting student based on ID: "+studentId);
+		Student myStudent=studentDAO.findById(studentId);
+
+		// Change First Name to "Coder"
+		System.out.println("Updating student records...");
+		myStudent.setFirstName("Coder");
+		myStudent.setEmail("coderkuchhal96@gmail.com");
+
+		// Update the Student
+		studentDAO.update(myStudent);
+
+		// Display the updated Student
+		System.out.println("Updated Student Records: "+myStudent);
+
+	}
+
+ */
+
+
 	// ------------------ Read multiple/all Students from the Database based on last name filter ----------------------
 
+/*
 	private void queryForStudentByLastName(StudentDAO studentDAO) {
 
 
@@ -45,6 +103,9 @@ public class CruddemoApplication {
 			System.out.println(tempStudent);
 		}
 	}
+
+ */
+
 
 	// ------------------ Read multiple/all Students from the Database ----------------------
 
