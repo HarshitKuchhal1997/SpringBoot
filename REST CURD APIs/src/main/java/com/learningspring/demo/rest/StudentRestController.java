@@ -1,9 +1,10 @@
 package com.learningspring.demo.rest;
 
 import com.learningspring.demo.entity.Student;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.annotation.PostConstruct;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,18 +13,59 @@ import java.util.List;
 @RequestMapping("/api")
 public class StudentRestController {
 
-    // defining endpoint for "/students" - return a list of studenrs
+    private List<Student> theStudent;
 
-    @GetMapping("/students")
-    public List<Student> getStudent(){
+    // define @PostConstructor to load the student data ... but it can be called only once
 
-        List<Student> theStudent=new ArrayList<>();
+    @PostConstruct
+    public void loadData(){
+
+        theStudent=new ArrayList<>();
 
         theStudent.add(new Student("Harshit","Kuchhal"));
         theStudent.add(new Student("Reena","Yadav"));
         theStudent.add(new Student("Saksham","Gupta"));
         theStudent.add(new Student("Ravi","Prashant"));
+    }
+
+    // defining endpoint for "/students" - return a list of students
+
+    @GetMapping("/students")
+    public List<Student> getStudent(){
 
         return theStudent;
     }
+
+    // define endpoint or "/student/{studentID}" - returns student at a particular index
+
+    @GetMapping("/student/{studentId}")
+    public Student getStudent(@PathVariable int studentId){
+
+        // just index into the result ....
+
+        // check the studentID again
+        if ((studentId>=theStudent.size()) || (studentId<0)){
+            throw new StudentNotFoundException("Student Not Found"+studentId);
+        }
+
+        return theStudent.get(studentId);
+    }
+
+    // Add an exception handler using @ExceptionHandler
+
+    @ExceptionHandler
+    public ResponseEntity<StudentErrorresponse> handleException(StudentErrorresponse exc){
+
+        // create a StudentErrorresponse
+        StudentErrorresponse error=new StudentErrorresponse();
+
+        error.setStatus(HttpStatus.NOT_FOUND.value());
+        error.setMessage(exc.getMessage());
+        error.setTimeStamp(System.currentTimeMillis());
+
+        // return ResponseEntity
+
+        return new ResponseEntity<>(error,HttpStatus.NOT_FOUND);
+    }
+
 }
